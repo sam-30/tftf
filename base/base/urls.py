@@ -1,21 +1,19 @@
-"""base URL Configuration
+""" 
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+base URL Configuration - for now only admin is needed in this configuration 
+file.  All other urls are in the googleMaps app.  The static media URL configuration
+is added to the end of the urlpatterns list so that images on the file system 
+are handled properly.  See the following article for more information on file handling:
+https://docs.djangoproject.com/en/4.1/howto/static-files/
+
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from base import settings
+from django.conf.urls.static import static
 
+print('base.urls')
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', include('googleMaps.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

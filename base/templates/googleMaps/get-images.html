@@ -1,0 +1,41 @@
+{# get-images.html - Display of the google maps images as Bootstrap card components #}
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Get images from Google Maps{% endblock %}
+
+{% block content %}
+    <hr />
+    {# display the images in the GMimages context variable #}
+    <div class="row">
+    {% for image in GMImages %}
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ image.name }}</h5>
+                <p class="card-text">
+                    <strong>Latitude:</strong> {{ image.latitude }}
+                    <br>
+                    <strong>Longitude:</strong> {{ image.longitude }}
+                    <br>
+                    <img src="{{ image.image.url }}" alt="{{ image.image.filename }}" class="img-fluid" width="100" height="100">
+                    <br>
+                    <strong>Downloaded Date:</strong> {{ image.date_created|date:"Y-m-d" }}
+                    <br>
+                    <strong>Time:</strong> {{ image.date_created|date:"h:m:s" }}
+                </p>
+                <a href="{{ image.image.url }}" class="btn btn-primary">View Full Image</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    <div class="row pt-3">
+        <div class="col-1">
+            <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+        </div>
+        <div class="col-4">
+            <a href="{% url 'refresh-images' %}" class="btn btn-secondary">Fresh Images (This takes time)</a>
+        </div>
+    </div>
+{% endblock %}

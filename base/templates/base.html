@@ -1,0 +1,23 @@
+{% extends 'bootstrap.html' %}
+{% load bootstrap5 %}
+
+{# load CSS and Javascript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block bootstrap5_content %}
+    <div class="container">
+        <h1>Trees from the Forrest</h1>
+        <h3>{% block title %}{% endblock %}</h3>
+
+        <!--top nav -->
+
+        <!--end top nav -->
+        {% autoescape off %}
+        {% bootstrap_messages %}
+        {% endautoescape %}
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+

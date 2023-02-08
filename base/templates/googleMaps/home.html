@@ -1,0 +1,12 @@
+{# home.html - a base landing page before getting the images from google maps.  More steps can be added here if the project were to grow in scope. #}
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+<br /><br />
+{% block title %}Tree Species Identification using Google Maps{% endblock %}
+
+{% block content %}
+<hr />
+Start by gathering tree image data from Google Maps for Pasadena, CA
+    <br /><br />
+    {% bootstrap_button 'Get Images' button_type='link' button_class='btn-primary' extra_classes='btn-lg btn-block' href='get-images' %}
+{% endblock %}
